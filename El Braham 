@@ -1,0 +1,228 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EL BRAHAM — Digital Architect</title>
+  <meta name="description" content="Akintonde Akolade — Digital Architect & Developer" />  <style>
+    /* Mobile-first dark tech + gold accent theme */
+    :root{
+      --bg:#0b0c0f;
+      --panel: rgba(255,255,255,0.03);
+      --muted: #9aa0a6;
+      --gold: #d4af37;
+      --glass: rgba(255,255,255,0.04);
+      --accent-glow: 0 6px 18px rgba(212,175,55,0.14);
+      --container-padding: 20px;
+      --max-width: 980px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%;margin:0;background:var(--bg);color:#e9eef6;}
+
+    /* Marble streak background using gradients */
+    body::before{
+      content:"";
+      position:fixed;inset:0;z-index:0;pointer-events:none;
+      background:
+        radial-gradient(1200px 300px at 10% 20%, rgba(212,175,55,0.03), transparent 6%),
+        radial-gradient(900px 250px at 90% 80%, rgba(212,175,55,0.02), transparent 6%),
+        linear-gradient(135deg, rgba(212,175,55,0.02), rgba(255,255,255,0.01));
+      mix-blend-mode: overlay;opacity:1;
+      filter: blur(10px);
+    }
+
+    /* Subtle textured streak */
+    .marble-stripe{
+      position:fixed;left:-30%;top:40%;width:160%;height:18vh;transform:rotate(-6deg);z-index:0;
+      background: linear-gradient(90deg, rgba(212,175,55,0.06) 0%, rgba(255,255,255,0.02) 35%, rgba(212,175,55,0.04) 100%);
+      backdrop-filter: blur(2px);
+      opacity:0.9;pointer-events:none;
+    }
+
+    .wrap{position:relative;z-index:1;max-width:var(--max-width);margin:28px auto;padding:var(--container-padding);}
+
+    header{
+      display:flex;gap:12px;align-items:center;justify-content:space-between;padding:14px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:var(--accent-glow);
+      border:1px solid rgba(255,255,255,0.03);
+      margin-bottom:20px;
+    }
+
+    .brand{
+      display:flex;gap:12px;align-items:center;
+    }
+    .logo{
+      width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#111217, rgba(212,175,55,0.08));display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--gold);font-size:20px;border:1px solid rgba(212,175,55,0.12);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 2px 6px rgba(212,175,55,0.06) inset;
+    }
+    .name{
+      font-size:15px;font-weight:700;letter-spacing:0.3px;color:#fff;
+    }
+    .sub{font-size:12px;color:var(--muted);}
+
+    /* Hero */
+    .hero{
+      display:grid;grid-template-columns:1fr;gap:18px;padding:28px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02);
+    }
+    .headline{font-size:22px;font-weight:800;line-height:1.04;color:linear-gradient(90deg,#fff,var(--gold));}
+    .lead{font-size:15px;color:var(--muted);}
+
+    .hero-row{display:flex;flex-direction:column;gap:12px;}
+
+    .title-giant{
+      font-size:28px;font-weight:900;color:#fff;text-shadow:0 6px 24px rgba(0,0,0,0.7);
+      letter-spacing:-0.6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+    }
+    .title-giant .gold{color:var(--gold);text-shadow:0 8px 26px rgba(212,175,55,0.12);}
+    .underline{
+      width:56px;height:4px;border-radius:20px;background:linear-gradient(90deg,var(--gold),rgba(255,255,255,0.14));box-shadow:0 6px 18px rgba(212,175,55,0.12);
+      transition:transform .4s cubic-bezier(.2,.9,.2,1);
+      transform-origin:left;
+    }
+
+    .actions{display:flex;gap:10px;flex-wrap:wrap;}
+    .btn{padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:var(--glass);font-weight:700;font-size:14px;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+    .btn.gold{background:linear-gradient(90deg, rgba(212,175,55,0.12), rgba(212,175,55,0.06));border:1px solid rgba(212,175,55,0.18);box-shadow:var(--accent-glow);} 
+
+    /* Panels */
+    .grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
+    .panel{padding:16px;border-radius:12px;background:var(--panel);border:1px solid rgba(255,255,255,0.02)}
+
+    .about p{color:var(--muted);line-height:1.6}
+
+    .skills{display:flex;gap:8px;flex-wrap:wrap}
+    .skill{padding:8px 10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);font-weight:700;color:#fff}
+
+    .contact-row{display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .contact-info{display:flex;flex-direction:column;gap:6px}
+    .contact .email{color:var(--muted);font-weight:700}
+
+    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* Responsive */
+    @media(min-width:720px){
+      .wrap{padding:28px}
+      .hero{grid-template-columns:1fr 300px;align-items:center}
+      .title-giant{font-size:38px}
+      .headline{font-size:18px}
+      .grid{grid-template-columns:1fr 320px}
+    }
+
+    /* small animations */
+    .logo-bounce{animation:logoPop .9s both}
+    @keyframes logoPop{0%{transform:scale(.86);opacity:0}60%{transform:scale(1.06);opacity:1}100%{transform:scale(1);}}
+
+    .glow-on-hover:hover{transform:translateY(-4px);box-shadow:var(--accent-glow)}
+
+  </style></head>
+<body>
+  <div class="marble-stripe"></div>
+  <div class="wrap"><header>
+  <div class="brand">
+    <div class="logo logo-bounce">EB</div>
+    <div>
+      <div class="name">Akintonde Akolade</div>
+      <div class="sub">EL BRAHAM — Digital Architect</div>
+    </div>
+  </div>
+  <div class="actions">
+    <a class="btn" href="#contact">Contact</a>
+    <a class="btn gold" href="#projects">Hire Me</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-row">
+    <div>
+      <div class="title-giant">EL <span class="gold">BRAHAM</span></div>
+      <div class="underline" style="margin-top:8px"></div>
+    </div>
+
+    <div style="margin-top:10px">
+      <div class="lead">Digital Architect & Visionary Developer — turning ideas into intelligent web experiences. Expert in building modern, responsive websites optimized for performance and conversion.</div>
+    </div>
+
+    <div style="margin-top:14px" class="actions">
+      <a class="btn gold" href="mailto:akintondeakolade10@gmail.com" id="hireEmail">Hire Me</a>
+      <a class="btn" href="https://wa.me/2347034016397" target="_blank">Message (WhatsApp)</a>
+    </div>
+  </div>
+
+  <div style="padding:18px;display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
+    <div class="panel" style="width:100%;text-align:right;">
+      <div style="font-weight:800;font-size:14px">Akintonde Akolade</div>
+      <div style="color:var(--muted);font-size:13px">Digital Architect — Web Development • UI/UX • Deployment</div>
+    </div>
+    <div class="panel" style="width:100%;text-align:right;">
+      <div style="font-weight:700">Location</div>
+      <div style="color:var(--muted);font-size:13px">Lagos, Nigeria</div>
+    </div>
+  </div>
+</section>
+
+<div class="grid">
+  <div class="panel about">
+    <h3 style="margin-top:0">About</h3>
+    <p>I'm Akintonde Akolade — known as <strong>EL BRAHAM</strong>. I design and build modern web experiences that help businesses grow online. I focus on performance, accessibility, and clean design. I turn messy ideas into fast, reliable websites that convert visitors into customers.</p>
+  </div>
+
+  <aside class="panel">
+    <h4 style="margin-top:0">Skills</h4>
+    <div class="skills">
+      <div class="skill">HTML</div>
+      <div class="skill">CSS</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">UI/UX</div>
+      <div class="skill">Vercel Deployment</div>
+    </div>
+
+    <div style="margin-top:12px">
+      <h4 style="margin-bottom:8px">Quick Wins</h4>
+      <div style="color:var(--muted);font-size:13px;line-height:1.5">I deliver fast landing pages, portfolio sites, and responsive templates that look premium and load quickly.</div>
+    </div>
+  </aside>
+
+  <div class="panel" id="projects">
+    <h3 style="margin-top:0">Projects</h3>
+    <p style="color:var(--muted);margin-bottom:8px">Sample projects will appear here as you build them. For now, you can showcase the portfolio itself as a live demo of your work.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div class="skill">Landing Page — Brand</div>
+      <div class="skill">Portfolio — Personal</div>
+      <div class="skill">E-commerce Template</div>
+    </div>
+  </div>
+
+  <div class="panel" id="contact">
+    <h3 style="margin-top:0">Contact</h3>
+    <div class="contact-row">
+      <div class="contact-info">
+        <div class="email">akintondeakolade10@gmail.com</div>
+        <div style="color:var(--muted);font-size:13px">Phone: 07034016397</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-direction:column;align-items:flex-end">
+        <a class="btn gold" href="mailto:akintondeakolade10@gmail.com">Email Me</a>
+        <a class="btn" href="https://wa.me/2347034016397" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © <span id="year"></span> EL BRAHAM — Built by Akintonde Akolade
+</footer>
+
+  </div>  <script>
+    // small scripts
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll for internal links (works on mobile)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',function(e){
+        e.preventDefault();
+        const id = this.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
+  </script></body>
+</html>
